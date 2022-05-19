@@ -8,24 +8,15 @@ public class CameraMovement : MonoBehaviour
     public Camera cam;
     [SerializeField] float minZoom = 1f;
     [SerializeField] float maxZoom = 8f;
-    [SerializeField] float minBoundX;
-    [SerializeField] float maxBoundX;
-    [SerializeField] float minBoundY;
-    [SerializeField] float maxBoundY;
-
-    void Start()
-    {
-        
-    }
-
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            touchStart = GetWorldPosititon(0);
+        
+        if(Input.GetMouseButton(0)) {
+            touchStart = GetWorldPosititon(0); 
         }
-        if(Input.touchCount == 2)
+
+        if (Input.touchCount == 2)
         {
             Touch touchZero = Input.GetTouch(0);
             Touch touchOne = Input.GetTouch(1);
@@ -44,8 +35,6 @@ public class CameraMovement : MonoBehaviour
         {
             Vector3 postition = touchStart - GetWorldPosititon(0);
             cam.transform.position += postition;
-            Mathf.Clamp(cam.transform.position.x, minBoundX,maxBoundX);
-            Mathf.Clamp(cam.transform.position.y, minBoundY, maxBoundY);
         }
 
     }
